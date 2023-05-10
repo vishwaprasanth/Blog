@@ -4,12 +4,12 @@ import TopBar from "../src/components/topbar/topBar";
 import Single from "./pages/single/single";
 import Write from "./pages/write/write";
 import Settings from "./pages/settings/settings";
-import Posts from "./components/posts/posts";
 import Login from "./pages/login/login";
 import Register from "./pages/register/register";
-import {BrowserRouter as Router,Routes,Switch,Route,Link} from "react-router-dom";
+import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 
 function App() {
+  const user = false;
   return (
     <Router>
     <TopBar />
@@ -18,19 +18,19 @@ function App() {
             <Home />
           </Route>
           <Route path="/register">
-            <Register />
+            {user ? <Home /> : <Register />}
           </Route>
           <Route path="/register">
             <Register />
           </Route>
           <Route path="/login">
-            <Login />
+          {user ? <Home /> :<Login />}
           </Route>
           <Route path="/write">
-            <Write />
+          {user ? <Write /> :<Register/>}
           </Route>
           <Route path="/settings">
-            <Settings />
+          {user ? <Settings /> :<Register/>}
           </Route>
           <Route path="/posts/:postsId">
             <Single />
